@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikhil & Sonali - Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="audio/wedding-song.mp3" type="audio/mpeg">
+        <source src="audio/wedding-song.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Button -->
+    <div class="music-control" id="musicControl">
+        <button id="musicToggle" class="music-btn" title="Toggle Music">
+            <span class="music-icon">🎵</span>
+        </button>
+        <div class="volume-controls">
+            <button id="volumeDown" class="volume-btn" title="Decrease Volume">-</button>
+            <span id="volumeDisplay" class="volume-display">3%</span>
+            <button id="volumeUp" class="volume-btn" title="Increase Volume">+</button>
+        </div>
+    </div>
+
+
+
+    <!-- Header Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="names" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="bride-name">Sonali</h1>
+                <div class="ampersand">&</div>
+                <h1 class="groom-name">Nikhil</h1>
+            </div>
+            <div class="wedding-date" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                <p class="date-text">are getting married</p>
+                <h2 class="main-date">Nov 02, 2025</h2>
+                <p class="location-text">The Grand Celebration Resort, Agra</p>
+            </div>
+        </div>
+        <div class="scroll-indicator" data-aos="fade-in" data-aos-delay="1500">
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">N&S</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#story" class="nav-link">Our Story</a></li>
+                <li><a href="#countdown" class="nav-link">Countdown</a></li>
+                <li><a href="#haldi-sangeet" class="nav-link">Haldi & Sangeet</a></li>
+                <li><a href="#details" class="nav-link">Wedding</a></li>
+                <li><a href="#venue" class="nav-link">Venue</a></li>
+                <li><a href="#rsvp" class="nav-link">RSVP</a></li>
+            </ul>
+            <div class="nav-audio-control">
+                <button id="navMusicToggle" class="nav-music-btn" title="Toggle Music">
+                    <span class="nav-music-icon">🎵</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- The Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">A journey of love, laughter, and endless adventures</p>
+            </div>
+            
+            <div class="photo-gallery">
+                <div class="gallery-container" id="galleryContainer">
+                    <div class="gallery-track">
+                        <!-- First set of photos -->
+                        <div class="photo-card" data-aos="fade-right" data-aos-delay="100">
+                            <div class="photo-image" style="background-image: url('images/pic1.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Our Journey</h3>
+                                        <p>Beautiful moments together</p>
+                                        <span class="photo-date">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card" data-aos="fade-right" data-aos-delay="200">
+                            <div class="photo-image" style="background-image: url('images/pic2.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Special Memories</h3>
+                                        <p>Celebrating our love</p>
+                                        <span class="photo-date">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card" data-aos="fade-right" data-aos-delay="300">
+                            <div class="photo-image" style="background-image: url('images/pic3.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Adventure Together</h3>
+                                        <p>Exploring new places</p>
+                                        <span class="photo-date">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card" data-aos="fade-right" data-aos-delay="400">
+                            <div class="photo-image" style="background-image: url('images/pic4.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>The Proposal</h3>
+                                        <p>A magical moment</p>
+                                        <span class="photo-date">2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card" data-aos="fade-right" data-aos-delay="500">
+                            <div class="photo-image" style="background-image: url('images/pic5.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Celebration</h3>
+                                        <p>Joy and happiness</p>
+                                        <span class="photo-date">2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card" data-aos="fade-right" data-aos-delay="600">
+                            <div class="photo-image" style="background-image: url('images/pic6.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Together Forever</h3>
+                                        <p>Our love story continues</p>
+                                        <span class="photo-date">2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Duplicate set for infinite scroll -->
+                        <div class="photo-card">
+                            <div class="photo-image" style="background-image: url('images/pic1.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Our Journey</h3>
+                                        <p>Beautiful moments together</p>
+                                        <span class="photo-date">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card">
+                            <div class="photo-image" style="background-image: url('images/pic2.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Special Memories</h3>
+                                        <p>Celebrating our love</p>
+                                        <span class="photo-date">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card">
+                            <div class="photo-image" style="background-image: url('images/pic3.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Adventure Together</h3>
+                                        <p>Exploring new places</p>
+                                        <span class="photo-date">2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card">
+                            <div class="photo-image" style="background-image: url('images/pic4.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>The Proposal</h3>
+                                        <p>A magical moment</p>
+                                        <span class="photo-date">2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card">
+                            <div class="photo-image" style="background-image: url('images/pic5.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Celebration</h3>
+                                        <p>Joy and happiness</p>
+                                        <span class="photo-date">2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card">
+                            <div class="photo-image" style="background-image: url('images/pic6.jpg');">
+                                <div class="photo-overlay">
+                                    <div class="photo-content">
+                                        <h3>Together Forever</h3>
+                                        <p>Our love story continues</p>
+                                        <span class="photo-date">2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section" id="countdown">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Save The Date</h2>
+                <p class="section-subtitle">Count down to our special day</p>
+            </div>
+            
+            <div class="countdown-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                
+                <div class="countdown-separator">:</div>
+                
+                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                
+                <div class="countdown-separator">:</div>
+                
+                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                
+                <div class="countdown-separator">:</div>
+                
+                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <div class="wedding-datetime" data-aos="fade-up" data-aos-delay="500">
+                <h3>November 2, 2025 • 8:00 PM</h3>
+                <p>Until we say "I Do"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Haldi and Sangeet Section -->
+    <section class="details-section" id="haldi-sangeet">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Haldi & Sangeet</h2>
+                <p class="section-subtitle">Pre-wedding celebrations filled with joy</p>
+            </div>
+            
+            <div class="details-grid">
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="detail-icon">🌸</div>
+                    <h3>Haldi Ceremony</h3>
+                    <p>Friday, Nov 01, 2025 at 10:00 AM</p>
+                </div>
+                
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="detail-icon">🎵</div>
+                    <h3>Sangeet Night</h3>
+                    <p>Friday, Nov 01, 2025 at 7:00 PM</p>
+                </div>
+                
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="detail-icon">👗</div>
+                    <h3>Dress Code</h3>
+                    <p>Bright Colors & Party Wear</p>
+                </div>
+            </div>
+            
+            <div class="timeline" data-aos="fade-up" data-aos-delay="400">
+                <h3>Schedule of Events</h3>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00 AM</div>
+                    <div class="timeline-content">Haldi ceremony begins</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00 PM</div>
+                    <div class="timeline-content">Lunch and family time</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">7:00 PM</div>
+                    <div class="timeline-content">Sangeet night begins</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:00 PM</div>
+                    <div class="timeline-content">Dance performances</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00 PM</div>
+                    <div class="timeline-content">Dinner and celebration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Date & Time Section -->
+    <section class="details-section" id="details">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Wedding Details</h2>
+                <p class="section-subtitle">Join us for a day of celebration</p>
+            </div>
+            
+            <div class="details-grid">
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="detail-icon">📅</div>
+                    <h3>Date</h3>
+                    <p>Saturday, Nov 02, 2025</p>
+                </div>
+                
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="detail-icon">⏰</div>
+                    <h3>Ceremony</h3>
+                    <p>8:00 PM</p>
+                </div>
+                
+                <div class="detail-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="detail-icon">🥻</div>
+                    <h3>Dress Code</h3>
+                    <p>Traditional</p>
+                </div>
+            </div>
+            
+            <div class="timeline" data-aos="fade-up" data-aos-delay="500">
+                <h3>Schedule of Events</h3>
+                <div class="timeline-item">
+                    <div class="timeline-time">5:30 PM</div>
+                    <div class="timeline-content">Guest arrival and seating</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:00 PM</div>
+                    <div class="timeline-content">Wedding ceremony begins</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:30 PM</div>
+                    <div class="timeline-content">Wedding hour and photos</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00 PM</div>
+                    <div class="timeline-content">Dinner</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">5:00 AM+1</div>
+                    <div class="timeline-content">Vidai</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="venue-section" id="venue">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Venues</h2>
+                <p class="section-subtitle">Where our love story continues</p>
+            </div>
+            
+            <!-- First Venue -->
+            <div class="venue-content">
+                <div class="venue-info" data-aos="fade-right">
+                    <h3>Jatin Resort (Haldi & Sangeet) 🎵</h3>
+                    <p class="venue-address">
+                        Jatin Resort<br>
+                        Agra, Uttar Pradesh
+                    </p>
+                    <p class="venue-description">
+                        Jatin Resort is a beautiful destination that combines traditional hospitality with modern 
+                        comfort. Set amidst lush gardens and featuring exquisite banquet halls, it offers an 
+                        intimate and memorable venue for our special celebrations.
+                    </p>
+                    <div class="venue-actions">
+                        <a href="https://maps.google.com/?q=Jatin+Resort+Agra" target="_blank" class="btn btn-outline">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="venue-map" data-aos="fade-left">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.987654321!2d78.0123!3d27.1890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDExJzIwLjQiTiA3OMKwMDAnNDQuMyJF!5e0!3m2!1sen!2sin!4v1234567890124"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Second Venue -->
+            <div class="venue-content" style="margin-top: 4rem;">
+                <div class="venue-info" data-aos="fade-right" data-aos-delay="200">
+                    <h3>The Grand Celebration Resort (Wedding) 🎺</h3>
+                    <p class="venue-address">
+                        The Grand Celebration Resort<br>
+                        Agra, Uttar Pradesh
+                    </p>
+                    <p class="venue-description">
+                        Located in the historic city of Agra, The Grand Celebration Resort offers luxurious 
+                        accommodations and stunning event spaces. With its elegant architecture and world-class 
+                        amenities, it provides the perfect setting for our wedding celebration.
+                    </p>
+                    <div class="venue-actions">
+                        <a href="https://maps.google.com/?q=The+Grand+Celebration+Resort+Agra" target="_blank" class="btn btn-outline">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="venue-map" data-aos="fade-left" data-aos-delay="200">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.123456789!2d78.0081!3d27.1767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDA2JzM2LjAiTiA3OMKwMDAnMjkuMiJF!5e0!3m2!1sen!2sin!4v1234567890123"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="rsvp-section" id="rsvp">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">RSVP</h2>
+                <p class="section-subtitle">Please let us know if you can join us</p>
+            </div>
+            
+            <div class="rsvp-form-container" data-aos="fade-up" data-aos-delay="200">
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attendance">Will you be attending? *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes, I'll be there!</option>
+                            <option value="no">Sorry, can't make it</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="guestCountGroup" style="display: block;">
+                        <label for="guestCount">Number of guests (including yourself) *</label>
+                        <select id="guestCount" name="guestCount">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Special message for the couple</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Share your excitement, well wishes, or a favorite memory..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Send RSVP</button>
+                </form>
+                
+                <!-- Success Message -->
+                <div class="rsvp-success" id="rsvpSuccess" style="display: none;">
+                    <div class="success-icon">✅</div>
+                    <h3>Thank You!</h3>
+                    <p>Your RSVP has been received successfully. We can't wait to celebrate with you!</p>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="rsvp-error" id="rsvpError" style="display: none;">
+                    <div class="error-icon">❌</div>
+                    <h3>Oops!</h3>
+                    <p>There was an error sending your RSVP. Please try again or contact us directly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content" data-aos="fade-up">
+                <div class="footer-message">
+                    <h3>With Love & Gratitude</h3>
+                    <p>
+                        We can't wait to celebrate this special day with our family and friends. 
+                        Your presence means the world to us, and we're so grateful to have you 
+                        as part of our journey.
+                    </p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Questions?</h4>
+                    <p>
+                        <strong>Nikhil:</strong> <a href="mailto:nikhil.srivastava944@gmail.com">nikhil.srivastava944@gmail.com</a> | 
+                        <a href="tel:+917726954715">(+91) 7726954715</a>
+                    </p>
+                    <p>
+                        <strong>Sonali:</strong> <a href="ar.sonali096@gmail.com">ar.sonali096@gmail.com</a> | 
+                        <a href="tel:+917726954715">(+91) 7726954715</a>
+                    </p>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Nikhil & Sonali Made with ❤️</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
