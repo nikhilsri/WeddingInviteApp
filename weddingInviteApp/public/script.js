@@ -764,7 +764,7 @@ function initializeRSVPForm() {
 
     // Initialize EmailJS (you'll need to replace with your actual keys)
     emailjs.init({
-        publicKey: 'YOUR_PUBLIC_KEY', // Replace with your EmailJS public key
+        publicKey: 'a2l_hppRR8Ydg8q9g', // Replace with your EmailJS public key
     });
 
     // Show/hide guest count based on attendance
@@ -812,8 +812,8 @@ function initializeRSVPForm() {
 
             // Send email using EmailJS
             const response = await emailjs.send(
-                'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
-                'YOUR_TEMPLATE_ID',   // Replace with your EmailJS template ID
+                'service_1f7iaa6',    // Replace with your EmailJS service ID
+                'template_pdimpk1',   // Replace with your EmailJS template ID
                 templateParams
             );
 
