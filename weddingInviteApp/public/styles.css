@@ -500,6 +500,153 @@ h1, h2, h3, h4 {
     overflow: hidden;
 }
 
+/* Curtain Animation */
+.curtain-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.curtain-left, .curtain-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #8b0000 0%, #4a0000 50%, #2c0000 100%);
+    transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10;
+    transform: translateX(0); /* Ensure initial position is set */
+}
+
+.curtain-left {
+    left: 0;
+    background: linear-gradient(135deg, #8b0000 0%, #4a0000 50%, #2c0000 100%);
+    box-shadow: 
+        inset -20px 0 40px rgba(0, 0, 0, 0.5),
+        20px 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.curtain-right {
+    right: 0;
+    background: linear-gradient(135deg, #2c0000 0%, #4a0000 50%, #8b0000 100%);
+    box-shadow: 
+        inset 20px 0 40px rgba(0, 0, 0, 0.5),
+        -20px 0 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Curtain fabric texture */
+.curtain-left::before, .curtain-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.05) 2px,
+            rgba(255, 255, 255, 0.05) 4px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 20px,
+            rgba(0, 0, 0, 0.1) 20px,
+            rgba(0, 0, 0, 0.1) 22px
+        );
+    opacity: 0.7;
+}
+
+/* Curtain tassels */
+.curtain-left::after, .curtain-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #d4af37 0%,
+        #b8941f 20%,
+        #d4af37 40%,
+        #b8941f 60%,
+        #d4af37 80%,
+        #b8941f 100%
+    );
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.curtain-left::after {
+    right: 0;
+}
+
+.curtain-right::after {
+    left: 0;
+}
+
+/* Curtain opening animation */
+.countdown-section.curtains-open .curtain-left {
+    transform: translateX(-100%);
+}
+
+.countdown-section.curtains-open .curtain-right {
+    transform: translateX(100%);
+}
+
+/* Content reveal animation */
+.countdown-content {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 1s;
+}
+
+/* Initially hide content behind curtains */
+.countdown-section:not(.curtains-open) .countdown-content {
+    opacity: 0;
+}
+
+.countdown-section.curtains-open .countdown-content {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Sparkle effects */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #d4af37;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0.5s; }
+.sparkle:nth-child(2) { top: 40%; right: 20%; animation-delay: 1s; }
+.sparkle:nth-child(3) { top: 60%; left: 25%; animation-delay: 1.5s; }
+.sparkle:nth-child(4) { top: 80%; right: 15%; animation-delay: 2s; }
+.sparkle:nth-child(5) { top: 30%; left: 70%; animation-delay: 2.5s; }
+.sparkle:nth-child(6) { top: 70%; right: 60%; animation-delay: 3s; }
+
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 0; 
+        transform: scale(0) rotate(0deg);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1) rotate(180deg);
+    }
+}
+
 .countdown-section::before {
     content: '';
     position: absolute;
@@ -621,6 +768,374 @@ h1, h2, h3, h4 {
 .details-section {
     padding: 6rem 0;
     background: linear-gradient(135deg, #f9f7f4 0%, #f5f1eb 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Yellow Petals Animation for Haldi & Sangeet Section */
+.petals-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.petals-container.active {
+    opacity: 1;
+}
+
+.petal {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(ellipse at center, #ffd700 0%, #ffed4e  40%, #f9ca24 100%);
+    border-radius: 50% 0 50% 0;
+    animation: fall linear infinite;
+    transform-origin: center;
+}
+
+/* Individual petal variations */
+.petal:nth-child(1) {
+    left: 5%;
+    animation-duration: 8s;
+    animation-delay: 0s;
+    transform: rotate(15deg);
+}
+
+.petal:nth-child(2) {
+    left: 15%;
+    animation-duration: 10s;
+    animation-delay: 1s;
+    transform: rotate(45deg);
+    width: 10px;
+    height: 10px;
+}
+
+.petal:nth-child(3) {
+    left: 25%;
+    animation-duration: 12s;
+    animation-delay: 0.5s;
+    transform: rotate(75deg);
+}
+
+.petal:nth-child(4) {
+    left: 35%;
+    animation-duration: 9s;
+    animation-delay: 2s;
+    transform: rotate(105deg);
+    width: 14px;
+    height: 14px;
+}
+
+.petal:nth-child(5) {
+    left: 45%;
+    animation-duration: 11s;
+    animation-delay: 1.5s;
+    transform: rotate(135deg);
+}
+
+.petal:nth-child(6) {
+    left: 55%;
+    animation-duration: 13s;
+    animation-delay: 0.8s;
+    transform: rotate(165deg);
+    width: 8px;
+    height: 8px;
+}
+
+.petal:nth-child(7) {
+    left: 65%;
+    animation-duration: 7s;
+    animation-delay: 2.5s;
+    transform: rotate(195deg);
+}
+
+.petal:nth-child(8) {
+    left: 75%;
+    animation-duration: 14s;
+    animation-delay: 1.2s;
+    transform: rotate(225deg);
+    width: 16px;
+    height: 16px;
+}
+
+.petal:nth-child(9) {
+    left: 85%;
+    animation-duration: 6s;
+    animation-delay: 3s;
+    transform: rotate(255deg);
+}
+
+.petal:nth-child(10) {
+    left: 95%;
+    animation-duration: 15s;
+    animation-delay: 0.3s;
+    transform: rotate(285deg);
+    width: 11px;
+    height: 11px;
+}
+
+.petal:nth-child(11) {
+    left: 10%;
+    animation-duration: 9.5s;
+    animation-delay: 4s;
+    transform: rotate(315deg);
+}
+
+.petal:nth-child(12) {
+    left: 30%;
+    animation-duration: 8.5s;
+    animation-delay: 2.8s;
+    transform: rotate(345deg);
+    width: 13px;
+    height: 13px;
+}
+
+.petal:nth-child(13) {
+    left: 50%;
+    animation-duration: 11.5s;
+    animation-delay: 1.8s;
+    transform: rotate(25deg);
+}
+
+.petal:nth-child(14) {
+    left: 70%;
+    animation-duration: 7.5s;
+    animation-delay: 3.5s;
+    transform: rotate(55deg);
+    width: 9px;
+    height: 9px;
+}
+
+.petal:nth-child(15) {
+    left: 90%;
+    animation-duration: 12.5s;
+    animation-delay: 0.7s;
+    transform: rotate(85deg);
+}
+
+@keyframes fall {
+    0% {
+        top: -20px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        top: 100vh;
+        transform: translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Pink and Yellow Petals Animation for Wedding Details Section */
+.wedding-petals-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.wedding-petals-container.active {
+    opacity: 1;
+}
+
+.wedding-petal {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50% 0 50% 0;
+    animation: weddingFall linear infinite;
+    transform-origin: center;
+}
+
+.wedding-petal.pink {
+    background: radial-gradient(ellipse at center, #ff69b4 0%, #ff1493 40%, #dc143c 100%);
+}
+
+.wedding-petal.yellow {
+    background: radial-gradient(ellipse at center, #ffd700 0%, #ffed4e 40%, #f9ca24 100%);
+}
+
+/* Individual wedding petal variations */
+.wedding-petal:nth-child(1) {
+    left: 8%;
+    animation-duration: 9s;
+    animation-delay: 0s;
+    transform: rotate(25deg);
+    width: 12px;
+    height: 12px;
+}
+
+.wedding-petal:nth-child(2) {
+    left: 18%;
+    animation-duration: 11s;
+    animation-delay: 0.8s;
+    transform: rotate(55deg);
+    width: 16px;
+    height: 16px;
+}
+
+.wedding-petal:nth-child(3) {
+    left: 28%;
+    animation-duration: 8s;
+    animation-delay: 1.5s;
+    transform: rotate(85deg);
+}
+
+.wedding-petal:nth-child(4) {
+    left: 38%;
+    animation-duration: 13s;
+    animation-delay: 0.3s;
+    transform: rotate(115deg);
+    width: 10px;
+    height: 10px;
+}
+
+.wedding-petal:nth-child(5) {
+    left: 48%;
+    animation-duration: 10s;
+    animation-delay: 2.2s;
+    transform: rotate(145deg);
+}
+
+.wedding-petal:nth-child(6) {
+    left: 58%;
+    animation-duration: 12s;
+    animation-delay: 1s;
+    transform: rotate(175deg);
+    width: 18px;
+    height: 18px;
+}
+
+.wedding-petal:nth-child(7) {
+    left: 68%;
+    animation-duration: 7s;
+    animation-delay: 3s;
+    transform: rotate(205deg);
+}
+
+.wedding-petal:nth-child(8) {
+    left: 78%;
+    animation-duration: 14s;
+    animation-delay: 0.5s;
+    transform: rotate(235deg);
+    width: 13px;
+    height: 13px;
+}
+
+.wedding-petal:nth-child(9) {
+    left: 88%;
+    animation-duration: 6s;
+    animation-delay: 2.8s;
+    transform: rotate(265deg);
+}
+
+.wedding-petal:nth-child(10) {
+    left: 98%;
+    animation-duration: 15s;
+    animation-delay: 1.3s;
+    transform: rotate(295deg);
+    width: 11px;
+    height: 11px;
+}
+
+.wedding-petal:nth-child(11) {
+    left: 15%;
+    animation-duration: 9.5s;
+    animation-delay: 3.5s;
+    transform: rotate(325deg);
+}
+
+.wedding-petal:nth-child(12) {
+    left: 35%;
+    animation-duration: 8.5s;
+    animation-delay: 2.5s;
+    transform: rotate(355deg);
+    width: 15px;
+    height: 15px;
+}
+
+.wedding-petal:nth-child(13) {
+    left: 55%;
+    animation-duration: 11.5s;
+    animation-delay: 1.8s;
+    transform: rotate(35deg);
+}
+
+.wedding-petal:nth-child(14) {
+    left: 75%;
+    animation-duration: 7.5s;
+    animation-delay: 4s;
+    transform: rotate(65deg);
+    width: 9px;
+    height: 9px;
+}
+
+.wedding-petal:nth-child(15) {
+    left: 95%;
+    animation-duration: 12.5s;
+    animation-delay: 0.7s;
+    transform: rotate(95deg);
+}
+
+.wedding-petal:nth-child(16) {
+    left: 25%;
+    animation-duration: 10.5s;
+    animation-delay: 3.2s;
+    transform: rotate(125deg);
+    width: 17px;
+    height: 17px;
+}
+
+.wedding-petal:nth-child(17) {
+    left: 65%;
+    animation-duration: 6.5s;
+    animation-delay: 2.1s;
+    transform: rotate(155deg);
+}
+
+.wedding-petal:nth-child(18) {
+    left: 85%;
+    animation-duration: 13.5s;
+    animation-delay: 1.6s;
+    transform: rotate(185deg);
+    width: 12px;
+    height: 12px;
+}
+
+@keyframes weddingFall {
+    0% {
+        top: -20px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        top: 100vh;
+        transform: translateX(120px) rotate(380deg);
+        opacity: 0;
+    }
 }
 
 .details-grid {
@@ -649,6 +1164,21 @@ h1, h2, h3, h4 {
     margin-bottom: 1rem;
 }
 
+/* Calendar Image Styling */
+.calendar-image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
+}
+
+.detail-card:hover .calendar-image {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+
 .detail-card h3 {
     font-size: 1.3rem;
     color: #8b7355;
@@ -660,11 +1190,45 @@ h1, h2, h3, h4 {
     font-size: 1.1rem;
 }
 
+/* Timeline with Image Layout */
 .timeline {
     background: white;
     padding: 3rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.timeline-schedule {
+    /* Contains the schedule items */
+}
+
+.timeline-image {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 1rem;
+}
+
+.haldi-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+.haldi-image:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .timeline h3 {
@@ -1153,6 +1717,19 @@ h1, h2, h3, h4 {
     .venue-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    
+    .timeline-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .timeline-image {
+        order: -1; /* Show image above schedule on mobile */
+    }
+    
+    .haldi-image {
+        max-width: 250px;
     }
     
     .form-row {

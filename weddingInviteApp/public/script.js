@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize RSVP form
     initializeRSVPForm();
     
+    // Initialize curtain animation
+    initializeCurtainAnimation();
+    
+    // Initialize petals animation
+    initializePetalsAnimation();
+    
+    // Initialize wedding petals animation
+    initializeWeddingPetalsAnimation();
+    
 });
 
 // Background Music Functionality
@@ -35,9 +44,9 @@ function initializeBackgroundMusic() {
     if (!audio || (!musicToggle && !navMusicToggle)) return;
     
     // Set initial volume to 3% and start time
-    let currentVolume = 0.03; // 3% volume
+    let currentVolume = 0.06; // 6% volume
     audio.volume = currentVolume;
-    audio.currentTime = 8; // Start from 8 seconds
+    audio.currentTime = 11; // Start from 11 seconds
     
     let isPlaying = false;
     let userInteracted = false;
@@ -63,7 +72,7 @@ function initializeBackgroundMusic() {
             console.log('Attempting to start music...');
             // Ensure audio is loaded
             audio.load();
-            audio.currentTime = 8; // Start from 8 seconds
+            audio.currentTime = 11; // Start from 11 seconds
             
             const playPromise = audio.play();
             if (playPromise !== undefined) {
@@ -749,6 +758,97 @@ function scrollToPrevSection() {
             break;
         }
     }
+}
+
+// Curtain Animation Functionality
+function initializeCurtainAnimation() {
+    const countdownSection = document.getElementById('countdown');
+    if (!countdownSection) return;
+    
+    // Create intersection observer to trigger curtain animation
+    const curtainObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add a small delay for dramatic effect
+                setTimeout(() => {
+                    entry.target.classList.add('curtains-open');
+                }, 300);
+                
+                // Disconnect observer after first trigger
+                curtainObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1, // Trigger when 10% of the section is visible
+        rootMargin: '0px 0px -50px 0px' // Trigger a bit before the section is fully visible
+    });
+    
+    // Start observing the countdown section
+    curtainObserver.observe(countdownSection);
+}
+
+// Yellow Petals Animation Functionality
+function initializePetalsAnimation() {
+    const haldiSection = document.getElementById('haldi-sangeet');
+    const petalsContainer = document.getElementById('petalsContainer');
+    
+    if (!haldiSection || !petalsContainer) return;
+    
+    // Create intersection observer to trigger petals animation
+    const petalsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Start the petals animation
+                petalsContainer.classList.add('active');
+                
+                // Stop the animation after 15 seconds
+                setTimeout(() => {
+                    petalsContainer.classList.remove('active');
+                }, 15000);
+                
+                // Disconnect observer after first trigger
+                petalsObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // Start observing the haldi section
+    petalsObserver.observe(haldiSection);
+}
+
+// Pink and Yellow Wedding Petals Animation Functionality
+function initializeWeddingPetalsAnimation() {
+    const weddingSection = document.getElementById('details');
+    const weddingPetalsContainer = document.getElementById('weddingPetalsContainer');
+    
+    if (!weddingSection || !weddingPetalsContainer) return;
+    
+    // Create intersection observer to trigger wedding petals animation
+    const weddingPetalsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Start the wedding petals animation
+                weddingPetalsContainer.classList.add('active');
+                
+                // Stop the animation after 18 seconds
+                setTimeout(() => {
+                    weddingPetalsContainer.classList.remove('active');
+                }, 18000);
+                
+                // Disconnect observer after first trigger
+                weddingPetalsObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2, // Trigger when 20% of the section is visible
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // Start observing the wedding details section
+    weddingPetalsObserver.observe(weddingSection);
 }
 
 // RSVP Form Functionality with EmailJS
